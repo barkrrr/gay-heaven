@@ -17,7 +17,7 @@ Technique
 
 Html 5 and Vanilla Javascript
 
-Game states
+## Game states
 
 - Splash screen
   Title
@@ -30,7 +30,7 @@ Game states
   Play again button
   Go to start screen button
   
-Game
+## Game
 
 - Create screen
 - Create player
@@ -43,7 +43,7 @@ Game
     - If collision with "enemy", remove point from score
 - Once 10 points have been reached -> Game Over -> Show Game Over screen 
 
-Back Log
+## Back Log
 
 -	Images (and GIFs?) that replace basic CANVAS objects (player and "friends" and "enemies").
 -	Welcome screen background.
@@ -52,9 +52,10 @@ Back Log
 -	A hellish background (NYC wall of faces).
 -	Transition to gay heaven when game ends (and “hot dog face” GIF).
 
-Data Structure
+## Data Structure
 
 main.js
+```
 createSplashScreen(id);
 createGameScreen(id);
 createGameOverScreen(id);
@@ -73,9 +74,9 @@ var game = new Game ({
 });
 
 game.init();
-
+```
 game.js
-
+```
   function Game(){};
   Game.drawScreen();
   Game.drawPlayer();
@@ -85,9 +86,9 @@ game.js
   Game.init();
 
 gameDestroy;
-
+```
 player.js
-
+```
   function Player() {
     this.width;
     this.height;
@@ -110,7 +111,7 @@ friends.js
     this.color;
   };
   Friends.move();
-
+```
 
 
 
