@@ -20,17 +20,19 @@ Html 5 and Vanilla Javascript
 ## Game states
 
 - Splash screen
-  Title
-  Play button
+    - Title
+    - Play button (transition to game screen)
   
 - Game screen
-  Canvas
+    - Canvas
+    - Transition: if you win or lose you go to the Game over screen
   
 - Game Over Screen
-  Play again button
-  Go to start screen button
+    - with dom manipulation i wil dynamicaly change the innerText of the message
+    - Play again button (transiton to game screen)
+    - Go to start screen button (transition to the splash screen)
   
-## Game
+## Tasks
 
 - Create screen
 - Create player
@@ -70,20 +72,29 @@ var game = new Game ({
       ctx: ctx ,
       this.friends ,
       this. enemies ,
-      this.player ,
+      this.player
 });
 
 game.init();
 ```
 game.js
 ```
-  function Game(){};
+  function Game(){
+    this.rows, 
+    this.columns, 
+    this.ctx,
+    this.friends,
+    this.enemies,
+    this.player,
+  };
+  
   Game.drawScreen();
   Game.drawPlayer();
   Game.generateFriends();
   Game.generateEnemies();
   Game.gameOver();
   Game.init();
+  Game.startLoop();
 
 gameDestroy;
 ```
@@ -95,22 +106,30 @@ player.js
     this.color;
   };
   Player.move();
-  
-enemies.js  
+  Player.checkCollisionsWithObjects();
+  Player.checkBoundaries();
+```
+enemy.js
+```
   function Enemies() {
     this.width;
     this.height;
     this.color;
   };
-  Enemies.move();
-  
-friends.js  
+  Enemy.move();
+  Enemy.checkCollisionsWithObjects();
+  Enemy.checkBoundaries();
+```
+friend.js
+``` 
   function Friends() {
     this.width;
     this.height;
     this.color;
   };
-  Friends.move();
+  Friend.move();
+  Friend.checkCollisionsWithObjects();
+  Friend.checkBoundaries();
 ```
 
 
