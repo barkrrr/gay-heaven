@@ -76,40 +76,40 @@ game.init();
 
 game.js
 
-  function Game(){} ;
-  Game.drawScreen() ;
-  Game.drawPlayer() ;
-  Game.generateFriends() ;
-  Game.generateEnemies() ;
-  Game.gameOver() ;
-  Game.init() ;
+  function Game(){};
+  Game.drawScreen();
+  Game.drawPlayer();
+  Game.generateFriends();
+  Game.generateEnemies();
+  Game.gameOver();
+  Game.init();
 
-gameDestroy ;
+gameDestroy;
 
 player.js
 
   function Player() {
-    this.width ;
-    this.height ;
-    this.color ;
+    this.width;
+    this.height;
+    this.color;
   };
-  Player.move() ;
+  Player.move();
   
 enemies.js  
   function Enemies() {
-    this.width ;
-    this.height ;
-    this.color ;
+    this.width;
+    this.height;
+    this.color;
   };
-  Enemies.move() ;
+  Enemies.move();
   
 friends.js  
   function Friends() {
-    this.width ;
-    this.height ;
-    this.color ;
+    this.width;
+    this.height;
+    this.color;
   };
-  Friends.move() ;
+  Friends.move();
 
 
 
