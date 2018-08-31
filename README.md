@@ -45,17 +45,17 @@ Game
 
 Back Log
 
--	Images (and GIFs?) that replace basic CANVAS objects (player and "friends" and "enemies")
--	Welcome screen background
--	Add "special items" that provide player with extra time
--	Sound (The Weather Girls, really?)
--	A hellish background (NYC wall of faces)
--	Transition to gay heaven when game ends (and “hot dog face” GIF)
+-	Images (and GIFs?) that replace basic CANVAS objects (player and "friends" and "enemies").
+-	Welcome screen background.
+-	Add "special items" that provide player with extra time.
+-	Sound (The Weather Girls, really?).
+-	A hellish background (NYC wall of faces).
+-	Transition to gay heaven when game ends (and “hot dog face” GIF).
 
 Data Structure
 
 main.js
-createStartScreen(id);
+createSplashScreen(id);
 createGameScreen(id);
 createGameOverScreen(id);
 
@@ -63,29 +63,58 @@ destroyStartSreen();
 destroyGameScreen();
 destroyGameOverScreen();
 
+var game = new Game ({
+      this.rows , 
+      this.columns , 
+      ctx: ctx ,
+      this.friends ,
+      this. enemies ,
+      this.player ,
+});
 
-- 	splashScreen
-  build splash DOM
-  add event listener
+game.init();
 
--   gameScreen
-  remove splash / remove game over if game was played previously
-  create the game
-  key press event listeners
-  create player
-  create good items
-  create bad items
-  start loop
+game.js
 
--   gameoverScreen
-  game destroy
-  build game over
-  add event listener
-  restart game
+  function Game(){} ;
+  Game.drawScreen() ;
+  Game.drawPlayer() ;
+  Game.generateFriends() ;
+  Game.generateEnemies() ;
+  Game.gameOver() ;
+  Game.init() ;
 
-- 	heavenScreen
-  game destroy
-  build heaven screen
-  add event listener
-  restart game]
+gameDestroy ;
+
+player.js
+
+  function Player() {
+    this.width ;
+    this.height ;
+    this.color ;
+  };
+  Player.move() ;
+  
+enemies.js  
+  function Enemies() {
+    this.width ;
+    this.height ;
+    this.color ;
+  };
+  Enemies.move() ;
+  
+friends.js  
+  function Friends() {
+    this.width ;
+    this.height ;
+    this.color ;
+  };
+  Friends.move() ;
+
+
+
+
+     
+
+
 
