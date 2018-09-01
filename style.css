@@ -1,0 +1,151 @@
+
+/* ---- reset ---- */
+
+html, body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ---- typography ---- */
+
+body {
+  color: #111;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 16px;
+  line-height: 147%;
+  background: lightblue;
+}
+
+h1 {
+  font-family: Impact, Charcoal, sans-serif;
+  padding: 20px;
+}
+
+.game {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.game .lives {
+  flex: 1;
+}
+
+.game .score {
+  flex: 1;
+}
+
+.game .label {
+  font-weight: bold;
+}
+
+.game .value {
+  font-style: italic;
+}
+
+.game .canvas {
+  flex: 1;
+}
+
+.game .username {
+  flex: 1;
+}
+
+/* ---- splash ---- */
+
+.splash {
+  margin-top: 15%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.splash h1 {
+  flex: 1;;
+  padding-top: 100px;
+  margin-bottom: 40px;
+}
+
+.splash div {
+  flex: 1;
+}
+
+.splash button {
+  flex: 1;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 20px 20px;
+  margin: 20px;
+  text-decoration: none;
+  background: #0069ed;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+  background: #0053ba;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+/* ---- gameover ---- */
+
+.gameover {
+  margin-top: 15%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gameover h1 {
+  flex: 1;;
+  padding-top: 100px;
+  margin-bottom: 40px;
+}
+
+.gameover div {
+  flex: 1;
+}
+
+.gameover button {
+  flex: 1;
+}
