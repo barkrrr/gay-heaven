@@ -8,7 +8,7 @@ function Player(canvas, lives) {
   self.direction = 0;
   self.size = 50;
   self.x = self.canvasElement.width / 2;
-  self.y = self.canvasElement.height -30;
+  self.y = self.canvasElement.height /2;
   self.direction = 0;
   self.speed = 5;
   self.ctx = self.canvasElement.getContext('2d');
