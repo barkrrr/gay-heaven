@@ -61,20 +61,49 @@ Game.prototype.start = function () {
 
   self.player = new Player(self.canvasElement, 2);
 
-  self.handleKeyDown = function (event) {
+  // var deltaX = 0;
+  // var deltaY = 0,
+
+  // document.body.addEventListener('keydown', self.keysPressed, false);
+  // document.body.addEventListener('keyup', self.keysReleased, false);
+
+  // var keys = [];
+
+  // function keysPressed(event) {
+  //   var self = this;
+  //   keys[event.keyCode] = true;
+  //   if (keys[37]) {
+  //     deltaX -= 2;
+  //   }
+  //   if (keys[39]) {
+  //     deltaX += 2;
+  //   }
+  //   if (keys[38]) {
+  //     deltaY -= 2;
+  //   }
+  //   if (keys[40]) {
+  //     deltaY += 2;
+  //   }
+  //   event.preventDefault();
+  // }
+  // function keysReleased (event) {
+  //   keys[event.keyCode] = false;
+  // };
+
+  self.keysPressed = function (event) {
     if (event.key === 'ArrowRight') {
       self.player.setDirection(-1);
     } else if (event.key === 'ArrowLeft') {
       self.player.setDirection(1);
 
-      // @todo how to move the player vertically
+    //   @todo how to move the player vertically
     // } else if (event.key === 'ArrowUp') {
     //   self.player.setDirection(2);
     }
   };
 
   document.body.addEventListener('keydown', self.handleKeyDown);
-
+  
   self.enemies = [];
   self.friends = [];
   self.lives = [];
