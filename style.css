@@ -126,6 +126,16 @@ button:active {
   transform: scale(0.99);
 }
 
+/* ---- instructions ---- */
+
+button#instructions-button, button#return-button {
+  background: pink;
+}
+
+p {
+  margin: 20px 25px;
+}
+
 /* ---- gameover ---- */
 
 .gameover {

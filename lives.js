@@ -35,7 +35,7 @@ Live.prototype.isInScreen = function () {
 
 Live.prototype.update = function () {
   var self = this;
-  
+
   if (self.side === 'top') {
     self.y = self.y + self.speed
   } else if (self.side === 'right') {
@@ -47,7 +47,7 @@ Live.prototype.update = function () {
 
 Live.prototype.draw = function() {
   var self = this;
-  self.ctx.fillStyle = 'yellow';
+  self.ctx.fillStyle = 'purple';
   var xPosition = self.x - self.size / 2;
   var yPosition = self.y - self.size / 2;
   self.ctx.fillRect(xPosition, yPosition, self.size, self.size);

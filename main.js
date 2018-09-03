@@ -12,13 +12,13 @@ function main() {
 
   var splashMain;
   var gameOverMain;
-
+  var gameInstructionsMain;
   var game; // instance of Game
   
 
   // -- splash
 
- function buildSplash() {
+  function buildSplash() {
 
     splashMain = buildDom(`
       <main class="splash">
@@ -30,7 +30,8 @@ function main() {
           <input type="text" placeholder="What's your favorite ice cream?"></input>
         </div>
         <div>
-        <button>Start</button>
+        <button id="start-button">Start</button>
+        <button id="instructions-button">Instructions</button>
         </div>
       </main>
     `);
@@ -47,13 +48,60 @@ function main() {
       return item.value;
     };
 
-    var button = splashMain.querySelector('button');
-    button.addEventListener('click', startGame);
+    var startButton = splashMain.querySelector('#start-button');
+    startButton.addEventListener('click', startGame);
 
+    addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        startGame();
+      }
+    }); 
+
+    var instructionsButton = splashMain.querySelector('#instructions-button');
+    instructionsButton.addEventListener('click', startInstructions);
   }
 
   function destroySplash() {
     splashMain.remove();
+  }
+
+  // -- Instructions
+
+  function startInstructions () {
+    destroySplash();
+    buildInstructions();
+  }
+
+  function buildInstructions() {
+
+    gameInstructionsMain = buildDom(`
+      <main class="instructions">
+      <div>
+        <h1>How to... </h1>
+      </div>
+      </div>
+        <p>Help Clint go to gay heaven ^-^ ...by avoiding his enemies, and collide with his favorite objects.</p>
+        <p>Catch extra lives to extend the game! Or the fun is over after 30 secs, bro!</p>
+        <p>Yayaya :) </p>
+        <button id="return-button">Return to Start</button>
+      </main>
+    `);
+
+    document.body.appendChild(gameInstructionsMain);
+
+    var button = gameInstructionsMain.querySelector('button');
+    button.addEventListener('click', startSplash);    
+ 
+
+    function destroyInstructions() {
+      gameInstructionsMain.remove();
+    }
+
+    function startSplash() {
+      destroyInstructions();
+      buildSplash();
+    }
+
   }
 
   
@@ -97,7 +145,7 @@ function main() {
     `);
 
     var button = gameOverMain.querySelector('button');
-    button.addEventListener('click', startGame);    
+    button.addEventListener('click', startGame);   
     
     var span = gameOverMain.querySelector('span');
     span.innerText = username+' your score is: ' + score + ' !!';

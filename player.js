@@ -61,6 +61,7 @@ Player.prototype.update = function () {
 
   self.x = self.x + self.direction.x * self.speed;
   self.y = self.y + self.direction.y * self.speed;
+  
   //Check X collisions
   if (self.x - self.size / 2 < 0) self.direction.x = 0;
   if (self.x + self.size / 2 > self.canvasElement.width) self.direction.x = 0;
@@ -73,7 +74,7 @@ Player.prototype.update = function () {
 Player.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'blue';
+  self.ctx.fillStyle = 'pink';
   var xPosition = self.x - self.size / 2;
   var yPosition = self.y - self.size / 2;
   self.ctx.fillRect(xPosition, yPosition , self.size, self.size);

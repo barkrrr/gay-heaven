@@ -7,6 +7,7 @@ function Game() {
   self.score = 0;
   self.isPause = false;
   self.username = idName;
+  self.message = '';
 }
 
 Game.prototype.start = function () {
@@ -64,7 +65,20 @@ Game.prototype.start = function () {
     }
   };
 
+  self.handleKeyUp = function (event) {
+    if (event.key === 'ArrowRight') {
+      self.player.setDirection('x', 0);
+    } else if (event.key === 'ArrowLeft') {
+      self.player.setDirection('x', 0);
+    } else if (event.key === 'ArrowUp') {
+      self.player.setDirection('y', 0);
+    } else if (event.key === 'ArrowDown') {
+      self.player.setDirection('y', 0);
+    }
+  };
+
   document.body.addEventListener('keydown', self.handleKeyDown);
+  document.body.addEventListener('keyup', self.handleKeyUp);
   
   self.enemies = [];
   self.friends = [];
@@ -75,6 +89,7 @@ Game.prototype.start = function () {
   self.gameIsOver = false;
 
 };
+
 
 Game.prototype.startLoop = function () {
   var self = this;
@@ -172,6 +187,10 @@ Game.prototype.startLoop = function () {
     });
 
     self.player.draw();
+    if (self.message) {
+      self.message.draw();
+    }
+
 
     if (!self.gameIsOver && !self.isPause) { 
       window.requestAnimationFrame(loop);
@@ -187,6 +206,7 @@ var self = this;
   self.enemies.forEach(function (item, index) {
     if (self.player.collidesWithEnemy(item)) {
       self.player.collided();
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'oh nooooo');
       self.enemies.splice(index, 1);
 
       if(!self.player.lives) {
@@ -198,9 +218,11 @@ var self = this;
 
 Game.prototype.checkIfFriendCollidedPlayer = function () {
   var self = this;
+
   self.friends.forEach( function(item, index) {
     if (self.player.collidesWithEnemy(item)) {
       self.score ++;
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'AWESOME!');
       self.friends.splice(index, 1);
     }
   });
@@ -211,6 +233,7 @@ Game.prototype.checkIfLivesCollidedPlayer = function () {
   self.lives.forEach( function(item, index) {
     if(self.player.collidesWithEnemy(item)) {
       self.player.collidedLive();
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'here\'s to LIFE');
       self.live ++;
       self.lives.splice(index, 1);
     }
