@@ -1,33 +1,53 @@
 'use strict';
 
-function Friend(canvas, y, speed) {
+function Friend(canvas, side) {
   var self = this;
   
   self.canvas = canvas;
-  self.size = 20;
-  self.x =  canvas.width + self.size;
-  self.y = y;
+  self.direction = 0;
+  self.size = 25;
+  self.side = side
+  if (self.side === 'top') {
+    self.x =  canvas.width * Math.random();
+    self.y = 0 - self.size
+  } else if (self.side === 'left') {
+    self.x =  0 - self.size
+    self.y = canvas.height * Math.random();
+  } else if (self.side === 'right') {
+    self.x =  canvas.width + self.size;
+    self.y = canvas.height * Math.random();
+  }
   self.ctx = self.canvas.getContext('2d');
-  self.speed = speed;
-  
+  self.speed = 6;
 }
 
 
 Friend.prototype.isInScreen = function () {
   var self = this;
-  return self.x + self.size / 2 > 0;
+  if (self.side === 'right') {
+    return self.x + self.size / 2 > 0;
+  } else if (self.side === 'left') {
+    return self.x + self.size / 2 < self.canvas.width;
+  } else if (self.side === 'top') {
+    return self.y + self.size / 2 < self.canvas.height;
+  }
 };
 
 Friend.prototype.update = function () {
   var self = this;
-  self.x = self.x - self.speed;
 
-  // todo prevent Friend from moving outside of screen
+  if (self.side === 'top') {
+    self.y = self.y + self.speed
+  } else if (self.side === 'right') {
+    self.x = self.x - self.speed;
+  } else if (self.side === 'left') {
+    self.x = self.x + self.speed
+  }
 };
 
 Friend.prototype.draw = function () {
   var self = this;
-  self.ctx.fillStyle = 'red';
+  self.ctx.fillStyle = 'blue';
   var xPosition = self.x - self.size / 2;
   var yPosition = self.y - self.size / 2;
   self.ctx.fillRect(xPosition, yPosition , self.size, self.size);

@@ -24,20 +24,11 @@ Game.prototype.start = function () {
           <span class="value"></span>
         </div>
         <div class="username">
-        <p></p>
+          <p></p>
         </div>
       </header>
       <div class="canvas">
         <canvas></canvas>
-      </div>
-      // <div>
-      //   <audio id='song' preload="auto" loop
-      //   src="./audio/Stage 1 Castlevania (NES) Music.mp3" type="audio/ogg">
-      //   </audio>
-      //   <div>
-      //     <button onclick="document.getElementById('song').play()">Play</button>
-      //     <button onclick="document.getElementById('song').pause()">Pause</button>
-      //   </div>
       </div>
     </main>
   `);
@@ -48,8 +39,7 @@ Game.prototype.start = function () {
 
   self.livesElement = self.gameMain.querySelector('.lives .value');
   self.scoreElement = self.gameMain.querySelector('.score .value');
-  self.music = self.gameMain.querySelector('audio');
-  self.music.autoplay = true;
+
 
   document.body.appendChild(self.gameMain);
 
@@ -61,44 +51,16 @@ Game.prototype.start = function () {
 
   self.player = new Player(self.canvasElement, 2);
 
-  // var deltaX = 0;
-  // var deltaY = 0,
 
-  // document.body.addEventListener('keydown', self.keysPressed, false);
-  // document.body.addEventListener('keyup', self.keysReleased, false);
-
-  // var keys = [];
-
-  // function keysPressed(event) {
-  //   var self = this;
-  //   keys[event.keyCode] = true;
-  //   if (keys[37]) {
-  //     deltaX -= 2;
-  //   }
-  //   if (keys[39]) {
-  //     deltaX += 2;
-  //   }
-  //   if (keys[38]) {
-  //     deltaY -= 2;
-  //   }
-  //   if (keys[40]) {
-  //     deltaY += 2;
-  //   }
-  //   event.preventDefault();
-  // }
-  // function keysReleased (event) {
-  //   keys[event.keyCode] = false;
-  // };
-
-  self.keysPressed = function (event) {
+  self.handleKeyDown = function (event) {
     if (event.key === 'ArrowRight') {
-      self.player.setDirection(-1);
+      self.player.setDirection('x', 1);
     } else if (event.key === 'ArrowLeft') {
-      self.player.setDirection(1);
-
-    //   @todo how to move the player vertically
-    // } else if (event.key === 'ArrowUp') {
-    //   self.player.setDirection(2);
+      self.player.setDirection('x', -1);
+    } else if (event.key === 'ArrowUp') {
+      self.player.setDirection('y', -1);
+    } else if (event.key === 'ArrowDown') {
+      self.player.setDirection('y', 1);
     }
   };
 
@@ -133,21 +95,37 @@ Game.prototype.startLoop = function () {
   });
 
   function loop() {
-
     // create more enemies now and then
-    if (Math.random() > 0.95) {
-      var y = self.canvasElement.height * Math.random();
-      self.enemies.push(new Enemy(self.canvasElement, y, 5));
+    var randomNumber = Math.random();
+
+    if (Math.random() > 0.97) {
+      if (randomNumber <= 0.33) {
+        self.enemies.push(new Enemy(self.canvasElement, 'top'));
+      } else if (randomNumber > 0.33 && randomNumber <= 0.66) {
+        self.enemies.push(new Enemy(self.canvasElement, 'left'));
+      } else if (randomNumber > 0.66) {
+        self.enemies.push(new Enemy(self.canvasElement, 'right'));
+      }
     }
 
     if (Math.random() > 0.99) {
-      var y = self.canvasElement.height * Math.random();
-      self.friends.push(new Friend(self.canvasElement, y, 5));
+      if (randomNumber <= 0.33) {
+        self.friends.push(new Friend(self.canvasElement, 'top'));
+      } else if (randomNumber > 0.33 && randomNumber <= 0.66) {
+        self.friends.push(new Friend(self.canvasElement, 'left'));
+      } else if (randomNumber > 0.66) {
+        self.friends.push(new Friend(self.canvasElement, 'right'));
+      }
     }
 
     if (Math.random() > 0.995) {
-      var y = self.canvasElement.height * Math.random();
-      self.lives.push(new Live(self.canvasElement, y, 8));
+      if (randomNumber <= 0.33) {
+        self.lives.push(new Live(self.canvasElement, 'top'));
+      } else if (randomNumber > 0.33 && randomNumber <= 0.66) {
+        self.lives.push(new Live(self.canvasElement, 'left'));
+      } else if (randomNumber > 0.66) {
+        self.lives.push(new Live(self.canvasElement, 'right'));
+      }
     }
     
     // update player position
@@ -195,8 +173,8 @@ Game.prototype.startLoop = function () {
 
     self.player.draw();
 
-    if(!self.gameIsOver && !self.isPause) { 
-    window.requestAnimationFrame(loop);
+    if (!self.gameIsOver && !self.isPause) { 
+      window.requestAnimationFrame(loop);
     }
   }
 
@@ -206,54 +184,55 @@ Game.prototype.startLoop = function () {
 Game.prototype.checkIfEnemiesCollidedPlayer = function () {
 var self = this;
 
-self.enemies.forEach(function (item, index) {
-  if (self.player.collidesWithEnemy(item)) {
-    self.player.collided();
-    self.enemies.splice(index, 1);
+  self.enemies.forEach(function (item, index) {
+    if (self.player.collidesWithEnemy(item)) {
+      self.player.collided();
+      self.enemies.splice(index, 1);
 
-    if(!self.player.lives) {
-      self.gameOver();
-    }  
-  }
-});
+      if(!self.player.lives) {
+        self.gameOver();
+      }  
+    }
+  });
 }
 
 Game.prototype.checkIfFriendCollidedPlayer = function () {
-var self = this;
-self.friends.forEach( function(item, index) {
-  if (self.player.collidesWithEnemy(item)) {
-    self.score ++;
-    self.friends.splice(index, 1);
-  }
-});
+  var self = this;
+  self.friends.forEach( function(item, index) {
+    if (self.player.collidesWithEnemy(item)) {
+      self.score ++;
+      self.friends.splice(index, 1);
+    }
+  });
 };
 
 Game.prototype.checkIfLivesCollidedPlayer = function () {
-var self = this;
-self.lives.forEach( function(item, index) {
-  if(self.player.collidesWithEnemy(item)) {
-    self.player.collidedLive();
-    self.lives.splice(index, 1);
-  }
-});
+  var self = this;
+  self.lives.forEach( function(item, index) {
+    if(self.player.collidesWithEnemy(item)) {
+      self.player.collidedLive();
+      self.live ++;
+      self.lives.splice(index, 1);
+    }
+  });
 };
 
 Game.prototype.onOver = function (callback) {
-var self = this;
+  var self = this;
 
-self.onGameOverCallback = callback;
+  self.onGameOverCallback = callback;
 };
 
 Game.prototype.gameOver = function () {
-var self = this;
+  var self = this;
 
-self.gameIsOver = true;
-self.onGameOverCallback();
+  self.gameIsOver = true;
+  self.onGameOverCallback();
 };
 
 
 Game.prototype.destroy = function () {
-var self = this;
+  var self = this;
 
-self.gameMain.remove();
+  self.gameMain.remove();
 };

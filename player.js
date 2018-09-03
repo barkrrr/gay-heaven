@@ -5,11 +5,13 @@ function Player(canvas, lives) {
   
   self.canvasElement = canvas;
   self.lives = lives; 
-  self.direction = 0;
   self.size = 50;
   self.x = self.canvasElement.width / 2;
-  self.y = self.canvasElement.height /2;
-  self.direction = 0;
+  self.y = self.canvasElement.height / 2;
+  self.direction = {
+    x: 0, 
+    y: 0
+  };
   self.speed = 5;
   self.ctx = self.canvasElement.getContext('2d');
   
@@ -36,6 +38,8 @@ Player.prototype.collidesWithEnemy = function (enemy) {
   const collidesBottom = self.y + self.size / 2 > enemy.y - enemy.size / 2;
 
   if (collidesLeft && collidesRight && collidesTop && collidesBottom) {
+    self.direction.x = self.direction.x * -1
+    self.direction.y = self.direction.y * -1
     return true;
   }
   
@@ -43,24 +47,27 @@ Player.prototype.collidesWithEnemy = function (enemy) {
 }
 
 
-Player.prototype.setDirection = function (direction) {
+Player.prototype.setDirection = function (axis, direction) {
   var self = this;
-
-  self.direction = direction;
+  if (axis === "y") {
+    self.direction.y = direction;
+  } else if (axis === "x") {
+    self.direction.x = direction;
+  }
 };
 
 Player.prototype.update = function () {
   var self = this;
 
-  self.x = self.x + self.direction * self.speed;
+  self.x = self.x + self.direction.x * self.speed;
+  self.y = self.y + self.direction.y * self.speed;
+  //Check X collisions
+  if (self.x - self.size / 2 < 0) self.direction.x = 0;
+  if (self.x + self.size / 2 > self.canvasElement.width) self.direction.x = 0;
 
-  if (self.x < 0){
-    self.direction = 1;
-  }
-
-  if (self.x > self.canvasElement.width){
-    self.direction = -1;
-  }
+  //Check Y collisions
+  if (self.y - self.size / 2 < 0) self.direction.y = 0;
+  if (self.y + self.size / 2 > self.canvasElement.height) self.direction.y = 0;
 };
 
 Player.prototype.draw = function () {
