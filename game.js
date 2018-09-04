@@ -1,12 +1,12 @@
 'use strict';
 
-function Game() {
+function Game(username) {
   var self = this;
 
   self.gameIsOver = false;
   self.score = 0;
   self.isPause = false;
-  self.username = idName;
+  self.username = username;
   self.message = '';
   self.playerHasWon = false;
   self.timer = 30;

@@ -14,7 +14,28 @@ function main() {
   var gameOverMain;
   var gameInstructionsMain;
   var game; // instance of Game
+  var username;
+  var input;
   
+  function handleClickInputUsername(event) {
+    if (!input.value) {
+      username = 'Sweetie'
+    } else {
+      username = input.value;
+    }
+    startGame();
+  }
+  
+  function handleEnterKeyUp(event) {
+    if (event.key === 'Enter') {
+      if (!input.value) {
+        username = 'Trashy'
+      } else {
+        username = input.value;
+      }
+      startGame();
+    }
+  }
 
   // -- splash
 
@@ -38,27 +59,16 @@ function main() {
     
     document.body.appendChild(splashMain);
 
-    var input = document.querySelector('input');
+    input = document.querySelector('input');
     input.setAttribute('size',input.getAttribute('placeholder').length);
 
-    input.addEventListener('keyup', function (){
-        idName = username(input);
-    })
-    function username (item) {
-      return item.value;
-      if(input.value = null) {
-        idName = 'Trash';
-      }
-    };
 
     var startButton = splashMain.querySelector('#start-button');
-    startButton.addEventListener('click', startGame);
 
-    addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        startGame();
-      }
-    }); 
+    
+    startButton.addEventListener('click', handleClickInputUsername); 
+
+    document.addEventListener('keyup', handleEnterKeyUp); 
 
     var instructionsButton = splashMain.querySelector('#instructions-button');
     instructionsButton.addEventListener('click', startInstructions);
@@ -114,7 +124,10 @@ function main() {
     destroySplash();
     destroyGameOver();
 
-    game = new Game();
+    document.removeEventListener('click', handleClickInputUsername);
+    document.removeEventListener('keyup', handleEnterKeyUp);
+
+    game = new Game(username);
     game.start();
     game.onOver(function () {
       gameOver(game.score, game.username, game.playerHasWon);
