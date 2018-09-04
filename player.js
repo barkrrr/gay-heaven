@@ -14,7 +14,6 @@ function Player(canvas, lives) {
   };
   self.speed = 5;
   self.ctx = self.canvasElement.getContext('2d');
-  
 }
 
 Player.prototype.collided = function () {
@@ -56,19 +55,28 @@ Player.prototype.setDirection = function (axis, direction) {
   }
 };
 
+
 Player.prototype.update = function () {
   var self = this;
 
   self.x = self.x + self.direction.x * self.speed;
   self.y = self.y + self.direction.y * self.speed;
-  
+
   //Check X collisions
-  if (self.x - self.size / 2 < 0) self.direction.x = 0;
-  if (self.x + self.size / 2 > self.canvasElement.width) self.direction.x = 0;
+  if (self.x - self.size / 2 < 0) {
+    self.direction.x = 0;
+  };
+  if (self.x + self.size / 2 > self.canvasElement.width) {
+    self.direction.x = 0;
+  };
 
   //Check Y collisions
-  if (self.y - self.size / 2 < 0) self.direction.y = 0;
-  if (self.y + self.size / 2 > self.canvasElement.height) self.direction.y = 0;
+  if (self.y - self.size / 2 < 0) {
+    self.direction.y = 0;
+  }
+  if (self.y + self.size / 2 > self.canvasElement.height) {
+    self.direction.y = 0;
+  }
 };
 
 Player.prototype.draw = function () {

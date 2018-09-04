@@ -46,6 +46,9 @@ function main() {
     })
     function username (item) {
       return item.value;
+      if(input.value = null) {
+        idName = 'Trash';
+      }
     };
 
     var startButton = splashMain.querySelector('#start-button');
@@ -114,7 +117,7 @@ function main() {
     game = new Game();
     game.start();
     game.onOver(function () {
-      gameOver(game.score, game.username);
+      gameOver(game.score, game.username, game.playerHasWon);
     });
   }
 
@@ -125,17 +128,17 @@ function main() {
   // -- game over 
 
 
-  function gameOver(score, username) {
+  function gameOver(score, username, result) {
     destroyGame();
-    buildGameOver(score, username);
+    buildGameOver(score, username, result);
   }
 
-  function buildGameOver(score, username) {
+  function buildGameOver(score, username, result) {
 
     gameOverMain = buildDom(`
       <main class="gameover">
       <div>
-        <h1>Game over :( </h1>
+        <h1></h1>
       </div>
       <div>
         <p><span></span></p>
@@ -150,6 +153,13 @@ function main() {
     var span = gameOverMain.querySelector('span');
     span.innerText = username+' your score is: ' + score + ' !!';
 
+    var h1 = gameOverMain.querySelector('h1');
+    if (result) {
+      h1.innerText = "Yayaya you go to Gay Heaven!"
+    } else {
+      h1.innerText = "Dang! You stay in hell :("
+    }
+
     document.body.appendChild(gameOverMain);
   }
 
@@ -159,6 +169,7 @@ function main() {
     }
   }
 
+  
   // -- initialize
 
   buildSplash();

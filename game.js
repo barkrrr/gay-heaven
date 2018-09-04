@@ -8,6 +8,9 @@ function Game() {
   self.isPause = false;
   self.username = idName;
   self.message = '';
+  self.playerHasWon = false;
+  self.timer = 30;
+  self.intervalId;
 }
 
 Game.prototype.start = function () {
@@ -88,8 +91,16 @@ Game.prototype.start = function () {
 
   self.gameIsOver = false;
 
+  self.startTimer()
+
 };
 
+Game.prototype.startTimer = function () {
+  var self = this;
+  self.intervalId = setInterval(function(){
+    self.timer--;
+  }, 1000)
+}
 
 Game.prototype.startLoop = function () {
   var self = this;
@@ -189,8 +200,21 @@ Game.prototype.startLoop = function () {
     self.player.draw();
     if (self.message) {
       self.message.draw();
+
+      setTimeout(function() {
+        self.message = "";
+      }, 1000)
     }
 
+    if (self.score === 10) {
+      self.playerHasWon = true;
+      self.gameOver();
+    }
+    
+    if (self.timer <= 0) {
+      clearInterval(self.intervalId)
+      self.gameOver();
+    }
 
     if (!self.gameIsOver && !self.isPause) { 
       window.requestAnimationFrame(loop);
@@ -221,8 +245,8 @@ Game.prototype.checkIfFriendCollidedPlayer = function () {
 
   self.friends.forEach( function(item, index) {
     if (self.player.collidesWithEnemy(item)) {
-      self.score ++;
-      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'AWESOME!');
+      self.score++;
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'SUPER CUTE!');
       self.friends.splice(index, 1);
     }
   });
@@ -233,7 +257,7 @@ Game.prototype.checkIfLivesCollidedPlayer = function () {
   self.lives.forEach( function(item, index) {
     if(self.player.collidesWithEnemy(item)) {
       self.player.collidedLive();
-      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'here\'s to LIFE');
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'Mountain Dew for LIFE');
       self.live ++;
       self.lives.splice(index, 1);
     }
