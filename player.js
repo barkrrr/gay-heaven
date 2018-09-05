@@ -4,7 +4,7 @@ function Player(canvas, lives) {
   var self = this;
   
   self.image = new Image();
-  self.image.src = './images/gay-god.png';
+  self.image.src = './images/gay-god-downsized.png';
   self.canvasElement = canvas;
   self.lives = lives; 
   self.width = 80;
@@ -34,10 +34,10 @@ Player.prototype.collidedLive = function () {
 Player.prototype.collidesWithEnemy = function (enemy) {
   var self = this;
 
-  const collidesRight = self.x + self.width / 2 > enemy.x - enemy.size / 2;
-  const collidesLeft = self.x - self.width / 2 < enemy.x + enemy.size / 2;
-  const collidesTop = self.y - self.height / 2 < enemy.y + enemy.size / 2;
-  const collidesBottom = self.y + self.height / 2 > enemy.y - enemy.size / 2;
+  const collidesRight = self.x + self.width / 2 > enemy.x - enemy.width / 2;
+  const collidesLeft = self.x - self.width / 2 < enemy.x + enemy.width / 2;
+  const collidesTop = self.y - self.height / 2 < enemy.y + enemy.height / 2;
+  const collidesBottom = self.y + self.height / 2 > enemy.y - enemy.height / 2;
 
   if (collidesLeft && collidesRight && collidesTop && collidesBottom) {
     self.direction.x = self.direction.x * -1
@@ -91,5 +91,5 @@ Player.prototype.draw = function () {
 
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
-  self.ctx.drawImage(self.image, 0, 0, 200, 200, xPosition, yPosition, self.width, self.height);
+  self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition, self.width, self.height);
 };

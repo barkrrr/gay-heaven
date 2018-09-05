@@ -3,18 +3,21 @@
 function Friend(canvas, side) {
   var self = this;
   
+  self.image = new Image();
+  self.image.src = './images/friendly-downsized.png';
   self.canvas = canvas;
   self.direction = 0;
-  self.size = 25;
+  self.width = 25;
+  self.height = 30;
   self.side = side
   if (self.side === 'top') {
     self.x =  canvas.width * Math.random();
-    self.y = 0 - self.size
+    self.y = 0 - self.height
   } else if (self.side === 'left') {
-    self.x =  0 - self.size
+    self.x =  0 - self.width
     self.y = canvas.height * Math.random();
   } else if (self.side === 'right') {
-    self.x =  canvas.width + self.size;
+    self.x =  canvas.width + self.width;
     self.y = canvas.height * Math.random();
   }
   self.ctx = self.canvas.getContext('2d');
@@ -25,11 +28,11 @@ function Friend(canvas, side) {
 Friend.prototype.isInScreen = function () {
   var self = this;
   if (self.side === 'right') {
-    return self.x + self.size / 2 > 0;
+    return self.x + self.width / 2 > 0;
   } else if (self.side === 'left') {
-    return self.x + self.size / 2 < self.canvas.width;
+    return self.x + self.width / 2 < self.canvas.width;
   } else if (self.side === 'top') {
-    return self.y + self.size / 2 < self.canvas.height;
+    return self.y + self.height / 2 < self.canvas.height;
   }
 };
 
@@ -47,8 +50,8 @@ Friend.prototype.update = function () {
 
 Friend.prototype.draw = function () {
   var self = this;
-  self.ctx.fillStyle = 'blue';
-  var xPosition = self.x - self.size / 2;
-  var yPosition = self.y - self.size / 2;
-  self.ctx.fillRect(xPosition, yPosition , self.size, self.size);
+  
+  var xPosition = self.x - self.width / 2;
+  var yPosition = self.y - self.height / 2;
+  self.ctx.drawImage(self.image, 0, 0, 25, 30, xPosition, yPosition, self.width, self.height);
 };
