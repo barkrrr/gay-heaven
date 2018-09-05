@@ -5,8 +5,6 @@
 The goal of the game is for the player to collect 10 “good”, gay-friendly items (which equals to 10 points) within 30 seconds. 
 Items can be selected through colliding with the moving item. 
 
-Once 10 items have been collected, the game will end, and the player will move to “Gay Heaven”. 
-
 If the player picks a “wrong”, homophobe or Trump-friendly item, one point is deducted from the score. 
 
 If the player doesn’t collect 10 points in 30 seconds, the game is over, and a “re-play” is offered on the game-over screen.
