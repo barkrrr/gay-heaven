@@ -4,11 +4,11 @@ function Live(canvas, side) {
   var self = this;  
 
   self.image = new Image();
-  self.image.src = './images/kitty-downsized.png';
+  self.image.src = './images/friendly-downsized.png';
   self.canvas = canvas;
   self.direction = 0;
-  self.width = 80;
-  self.height = 120;
+  self.width = 40;
+  self.height = 40;
   self.side = side
   if (self.side === 'top') {
     self.x =  canvas.width * Math.random();
@@ -21,7 +21,7 @@ function Live(canvas, side) {
     self.y = canvas.height * Math.random();
   }
   self.ctx = self.canvas.getContext('2d');
-  self.speed = 8;
+  self.speed = 5;
 }
 
 
@@ -53,5 +53,5 @@ Live.prototype.draw = function() {
   
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
-  self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition, self.width, self.height);
+  self.ctx.drawImage(self.image, 0, 0, self.width, self.height, xPosition, yPosition, self.width +20, self.height+20);
 };

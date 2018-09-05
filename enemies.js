@@ -7,8 +7,8 @@ function Enemy(canvas, side) {
   self.image.src = './images/enemy-downsized.png';
   self.canvas = canvas;
   self.direction = 0;
-  self.width = 25;
-  self.height = 30;
+  self.width = 40;
+  self.height = 40;
   self.side = side
   if (self.side === 'top') {
     self.x =  canvas.width * Math.random();
@@ -53,5 +53,5 @@ Enemy.prototype.draw = function () {
   
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
-  self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition, self.width, self.height);
+  self.ctx.drawImage(self.image, 0, 0, self.width, self.height, xPosition, yPosition, self.width +20, self.height+20);
 };

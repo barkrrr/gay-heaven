@@ -8,7 +8,7 @@ function Player(canvas, lives) {
   self.canvasElement = canvas;
   self.lives = lives; 
   self.width = 80;
-  self.height = 120;
+  self.height = 80;
   self.x = self.canvasElement.width / 2;
   self.y = self.canvasElement.height / 2;
   self.direction = {
@@ -91,5 +91,5 @@ Player.prototype.draw = function () {
 
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
-  self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition, self.width, self.height);
+  self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition - 20, self.width, self.height+40);
 };

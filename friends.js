@@ -4,11 +4,12 @@ function Friend(canvas, side) {
   var self = this;
   
   self.image = new Image();
-  self.image.src = './images/friendly-downsized.png';
+  self.friendsImage.src = self.RandomImage();
+  self.friendsChoices = ['./images/kitty-downsized.png', './images/ice-cream.png'];
   self.canvas = canvas;
   self.direction = 0;
-  self.width = 25;
-  self.height = 30;
+  self.width = 40;
+  self.height = 40;
   self.side = side
   if (self.side === 'top') {
     self.x =  canvas.width * Math.random();
@@ -24,6 +25,12 @@ function Friend(canvas, side) {
   self.speed = 6;
 }
 
+Friends.prototype.getRandomImage = function() {
+  var self = this;
+
+  var randomNum = Math.floor(Math.random() * self.friendsChoices.length);
+  return self.friendsChoices[randomNum];
+};
 
 Friend.prototype.isInScreen = function () {
   var self = this;
@@ -53,5 +60,6 @@ Friend.prototype.draw = function () {
   
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
-  self.ctx.drawImage(self.image, 0, 0, 25, 30, xPosition, yPosition, self.width, self.height);
+  //self.ctx.fillRect(xPosition, yPosition, self.width, self.height)
+  self.ctx.drawImage(self.friendsImage, 0, 0, self.width, self.height, xPosition, yPosition, self.width +20, self.height+20);
 };

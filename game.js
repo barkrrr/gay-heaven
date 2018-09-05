@@ -246,7 +246,7 @@ Game.prototype.checkIfFriendCollidedPlayer = function () {
   self.friends.forEach( function(item, index) {
     if (self.player.collidesWithEnemy(item)) {
       self.score++;
-      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'Mountain Dew for LIFE!');
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'SUPER CUTE');
       self.friends.splice(index, 1);
     }
   });
@@ -257,7 +257,7 @@ Game.prototype.checkIfLivesCollidedPlayer = function () {
   self.lives.forEach( function(item, index) {
     if(self.player.collidesWithEnemy(item)) {
       self.player.collidedLive();
-      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'SUPER CUTE');
+      self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'Mountain Dew for LIFE!');
       self.live ++;
       self.lives.splice(index, 1);
     }
