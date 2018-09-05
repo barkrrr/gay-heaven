@@ -26,6 +26,7 @@ body {
   font-size: 16px;
   line-height: 147%;
   background: lightblue;
+  opacity: 0.6;
 }
 
 h1 {
@@ -129,7 +130,7 @@ button:active {
 /* ---- instructions ---- */
 
 button#instructions-button, button#return-button {
-  background: pink;
+  background: purple;
 }
 
 p {

@@ -93,8 +93,8 @@ function main() {
         <h1>How to... </h1>
       </div>
       </div>
-        <p>Help Clint go to gay heaven ^-^ ...by avoiding his enemies, and collide with his favorite objects.</p>
-        <p>Catch extra lives to extend the game! Or the fun is over after 30 secs, bro!</p>
+        <p>Help Clint escape from this Trumpish nightmare ^-^ ...by avoiding his enemies, and collide with his favorite objects.</p>
+        <p>Catch extra lives to extend the game! Or the fun is over after 30 secs, lol!</p>
         <p>Of course you can take a pause for an extra sip of Mountain Dew...</p>
         <p>Yayaya :) </p>
         <button id="return-button">Return to Start</button>

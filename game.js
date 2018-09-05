@@ -83,6 +83,7 @@ Game.prototype.start = function () {
   document.body.addEventListener('keydown', self.handleKeyDown);
   document.body.addEventListener('keyup', self.handleKeyUp);
   
+  self.rainbows = [];
   self.enemies = [];
   self.friends = [];
   self.lives = [];
@@ -120,7 +121,13 @@ Game.prototype.startLoop = function () {
     }
   });
 
+  setInterval(function() {
+      self.rainbows = [];
+    }, 2000)
+  
+
   function loop() {
+  
     // create more enemies now and then
     var randomNumber = Math.random();
 
@@ -153,6 +160,14 @@ Game.prototype.startLoop = function () {
         self.lives.push(new Live(self.canvasElement, 'right'));
       }
     }
+
+    if (self.rainbows.length < 10){
+      if (Math.random() > 0.97){
+      var y = self.canvasElement.height * Math.random();
+      var x = self.canvasElement.width * Math.random();
+      self.rainbows.push(new Rainbow(self.canvasElement, x , y));
+      }
+    } 
     
     // update player position
     self.player.update();
@@ -185,6 +200,11 @@ Game.prototype.startLoop = function () {
     ctx.clearRect(0, 0, self.width, self.height);
 
     // Draw
+
+    self.rainbows.forEach(function(item) {
+      item.draw();
+    });
+
     self.enemies.forEach(function (item) {
       item.draw();
     });
