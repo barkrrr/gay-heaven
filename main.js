@@ -47,6 +47,9 @@ function main() {
         <h1>Gay Heaven</h1>
       </div>
         <div>
+        <img src="./images/kitty-downsized.png">
+        </div>
+        <div>
           <label>Username:</label>
           <input type="text" placeholder="What's your favorite ice cream?"></input>
         </div>

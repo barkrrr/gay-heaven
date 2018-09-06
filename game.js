@@ -50,7 +50,8 @@ Game.prototype.start = function () {
 
   audio.remove();
 
-  self.meow = new Audio('./music/Cat-meow.mp3')
+  self.meow = new Audio('./music/Cat-meow.mp3');
+  self.fart = new Audio('./music/Trump-fart.mp3');
 
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.canvasParentElement.offsetHeight;
@@ -254,7 +255,7 @@ var self = this;
       self.player.collided();
       self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'oh nooooo');
       self.enemies.splice(index, 1);
-
+      self.fart.play();
       if(!self.player.lives) {
         self.gameOver();
       }  
