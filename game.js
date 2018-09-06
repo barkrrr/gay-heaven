@@ -50,6 +50,8 @@ Game.prototype.start = function () {
 
   audio.remove();
 
+  self.meow = new Audio('./music/Cat-meow.mp3')
+
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.canvasParentElement.offsetHeight;
 
@@ -268,6 +270,7 @@ Game.prototype.checkIfFriendCollidedPlayer = function () {
       self.score++;
       self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'SUPER CUTE');
       self.friends.splice(index, 1);
+      self.meow.play();
     }
   });
 };
