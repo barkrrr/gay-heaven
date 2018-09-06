@@ -5,6 +5,8 @@ function Player(canvas, lives) {
   
   self.image = new Image();
   self.image.src = './images/gay-god-downsized.png';
+  self.spriteCollision = new Image();
+  self.spriteCollision.src = './images/explosion_sprite-okay.png';
   self.canvasElement = canvas;
   self.lives = lives; 
   self.width = 80;
@@ -17,7 +19,9 @@ function Player(canvas, lives) {
   };
   self.speed = 5;
   self.ctx = self.canvasElement.getContext('2d');
-}
+  self.frameCount = 0;
+  self.intervalId = 0;
+};
 
 Player.prototype.collided = function () {
   var self= this;
@@ -27,9 +31,9 @@ Player.prototype.collided = function () {
 
 Player.prototype.collidedLive = function () {
   var self = this;
-  self.lives++;
 
-}  
+  self.lives++;
+};  
 
 Player.prototype.collidesWithEnemy = function (enemy) {
   var self = this;
@@ -44,7 +48,6 @@ Player.prototype.collidesWithEnemy = function (enemy) {
     self.direction.y = self.direction.y * -1
     return true;
   }
-  
   return false;
 }
 
@@ -93,3 +96,20 @@ Player.prototype.draw = function () {
   var yPosition = self.y - self.height / 2;
   self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition - 20, self.width, self.height+40);
 };
+
+Player.prototype.drawCollision = function () {
+  var self = this;
+
+  var playerX = 20;
+  var playerY = 20;
+  
+  // function drawCollision() {
+  //   var cutPosition = self.frameCount * 40;
+  //   self.ctx.drawImage(self.spriteCollision, cutPosition, 0, 40, 40, playerX, playerY, 40, 40);
+  //   self.frameCount++;
+  // }
+  
+  // self.intervalId = setInterval(drawCollision, 17)
+  // if (self.frameCount === 48) clearInterval(intervalId);
+};
+

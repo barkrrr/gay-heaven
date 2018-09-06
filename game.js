@@ -37,15 +37,18 @@ Game.prototype.start = function () {
     </main>
   `);
 
+  
   self.gameMain.querySelector('p').innerText = self.username;
   self.canvasParentElement = self.gameMain.querySelector('.canvas');
   self.canvasElement = self.gameMain.querySelector('canvas');
-
+  
   self.livesElement = self.gameMain.querySelector('.lives .value');
   self.scoreElement = self.gameMain.querySelector('.score .value');
-
-
+  
   document.body.appendChild(self.gameMain);
+  var audio = document.querySelector('iframe');
+
+  audio.remove();
 
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.canvasParentElement.offsetHeight;
@@ -53,7 +56,7 @@ Game.prototype.start = function () {
   self.canvasElement.setAttribute('width', self.width);
   self.canvasElement.setAttribute('height', self.height);
 
-  self.player = new Player(self.canvasElement, 2);
+  self.player = new Player(self.canvasElement, 3);
 
 
   self.handleKeyDown = function (event) {
@@ -113,10 +116,6 @@ Game.prototype.startLoop = function () {
       self.isPause = !self.isPause;
       if (!self.isPause) {
           loop();
-      //     self.music.play();
-      // }
-      // if (self.pause) {
-      //   self.music.pause();
       }
     }
   });
@@ -190,15 +189,16 @@ Game.prototype.startLoop = function () {
       return item.isInScreen();
     })
 
+    ctx.clearRect(0, 0, self.width, self.height);
+
     self.checkIfEnemiesCollidedPlayer();
     self.checkIfFriendCollidedPlayer();
     self.checkIfLivesCollidedPlayer();
-
+    
     self.livesElement.innerText = self.player.lives;
     self.scoreElement.innerText = self.score;
-
-    ctx.clearRect(0, 0, self.width, self.height);
-
+    
+    
     // Draw
 
     self.rainbows.forEach(function(item) {
@@ -279,6 +279,7 @@ Game.prototype.checkIfLivesCollidedPlayer = function () {
       self.player.collidedLive();
       self.message = new Message (self.canvasElement.getContext('2d'), item.x, item.y, 'Mountain Dew for LIFE!');
       self.live ++;
+      self.player.drawCollision();
       self.lives.splice(index, 1);
     }
   });

@@ -19,18 +19,19 @@ body {
 
 
 /* ---- typography ---- */
+@font-face {
+  font-family: 'Bangers';
+  src: url('./font/bangers-regular.ttf')
+}
 
 body {
   color: #111;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 16px;
   line-height: 147%;
   background: lightblue;
-  opacity: 0.6;
+  font-family: 'Black Ops One';
 }
 
 h1 {
-  font-family: Impact, Charcoal, sans-serif;
   padding: 20px;
 }
 
@@ -39,37 +40,31 @@ h1 {
   display: flex;
   flex-direction: column;
   height: 100%;
+  header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  .lives {
+    flex: 1;
+  }
+  .score {
+    flex: 1;
+  }
+  .label {
+    font-weight: bold;
+  }
+  // .value {
+  //   font-style: italic;
+  // }
+  .canvas {
+    flex: 1;
+  }
+  .username {
+    flex: 1;
+  }
 }
 
-.game header {
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.game .lives {
-  flex: 1;
-}
-
-.game .score {
-  flex: 1;
-}
-
-.game .label {
-  font-weight: bold;
-}
-
-.game .value {
-  font-style: italic;
-}
-
-.game .canvas {
-  flex: 1;
-}
-
-.game .username {
-  flex: 1;
-}
 
 /* ---- splash ---- */
 
@@ -79,21 +74,20 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  h1 {
+    flex: 1;;
+    padding-top: 100px;
+    margin-bottom: 40px;
+  }
+  div {
+    flex: 1;
+  }
+  button {
+    flex: 1;
+  }
 }
 
-.splash h1 {
-  flex: 1;;
-  padding-top: 100px;
-  margin-bottom: 40px;
-}
 
-.splash div {
-  flex: 1;
-}
-
-.splash button {
-  flex: 1;
-}
 
 button {
   display: inline-block;
@@ -103,7 +97,7 @@ button {
   text-decoration: none;
   background: #0069ed;
   color: #ffffff;
-  font-family: sans-serif;
+  font-family: 'Black Ops One';
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
@@ -111,27 +105,24 @@ button {
               transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
+  &:hover,
+  &:focus {
+    background: #0053ba;
+  }
+  &:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+  }
+  &:active {
+    transform: scale(0.99);
+  }
+  &#instructions-button, &#return-button {
+    background: purple;
+  }
 }
 
-button:hover,
-button:focus {
-  background: #0053ba;
-}
-
-button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
-}
-
-button:active {
-  transform: scale(0.99);
-}
 
 /* ---- instructions ---- */
-
-button#instructions-button, button#return-button {
-  background: purple;
-}
 
 p {
   margin: 20px 25px;
@@ -145,18 +136,15 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.gameover h1 {
-  flex: 1;;
-  padding-top: 100px;
-  margin-bottom: 40px;
-}
-
-.gameover div {
-  flex: 1;
-}
-
-.gameover button {
-  flex: 1;
+  h1 {
+    flex: 1;;
+    padding-top: 100px;
+    margin-bottom: 40px;
+  }
+  div {
+    flex: 1;
+  }
+  button {
+    flex: 1;
+  }
 }

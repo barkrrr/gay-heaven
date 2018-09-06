@@ -56,6 +56,7 @@ function main() {
         </div>
       </main>
     `);
+
     
     document.body.appendChild(splashMain);
 
@@ -72,6 +73,9 @@ function main() {
 
     var instructionsButton = splashMain.querySelector('#instructions-button');
     instructionsButton.addEventListener('click', startInstructions);
+
+    // self.music = self.splashMain.querySelector('audio');
+    // self.music.autoplay = true;
   }
 
   function destroySplash() {
@@ -94,7 +98,7 @@ function main() {
       </div>
       </div>
         <p>Help Clint escape from this Trumpish nightmare ^-^ ...by avoiding his enemies, and collide with his favorite objects.</p>
-        <p>Catch extra lives to extend the game! Or the fun is over after 30 secs, lol!</p>
+        <p>Catch extra lives to extend the game! You start with 3 lives, but the fun is over after 30 secs, lol!</p>
         <p>Of course you can take a pause for an extra sip of Mountain Dew...</p>
         <p>Yayaya :) </p>
         <button id="return-button">Return to Start</button>
@@ -175,6 +179,12 @@ function main() {
     }
 
     document.body.appendChild(gameOverMain);
+    
+    var iframe = buildDom(`
+      <iframe src="./music/LCDSoundsystem-New-York.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
+    `)
+
+    document.body.appendChild(iframe);
   }
 
   function destroyGameOver() {

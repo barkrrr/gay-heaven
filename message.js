@@ -7,6 +7,7 @@ function Message(canvas, x, y, text) {
   self.x = x;
   self.y = y;
   self.text = text;
+  self.ctx = self.canvas;
 }
 
 
@@ -26,5 +27,6 @@ Message.prototype.draw = function() {
   var self = this;
 
   self.canvas.fillText(self.text, self.x, self.y);
-  
+  self.ctx.font = "40px Bangers";
+  self.ctx.fillStyle = "#black";
 };
