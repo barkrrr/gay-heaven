@@ -27,7 +27,7 @@ body {
 body {
   color: #111;
   line-height: 147%;
-  background: lightblue;
+  background: lightskyblue;
   font-family: 'Black Ops One';
 }
 
@@ -95,7 +95,7 @@ button {
   padding: 20px 20px;
   margin: 20px;
   text-decoration: none;
-  background: #0069ed;
+  background: #000080;
   color: #ffffff;
   font-family: 'Black Ops One';
   font-size: 1rem;
@@ -107,7 +107,7 @@ button {
   -moz-appearance: none;
   &:hover,
   &:focus {
-    background: #0053ba;
+    background: #000080;
   }
   &:focus {
     outline: 1px solid #fff;
@@ -143,6 +143,10 @@ p {
   }
   div {
     flex: 1;
+  div img {
+    width: 50px;
+    height: 20px;
+  }  
   }
   button {
     flex: 1;

@@ -50,8 +50,9 @@ Game.prototype.start = function () {
 
   audio.remove();
 
-  self.meow = new Audio('./music/Cat-meow.mp3');
+  self.meow = new Audio('./music/Cat-meow-cuter.mp3');
   self.fart = new Audio('./music/Trump-fart.mp3');
+  self.roar = new Audio('./music/Lion-roar.mp3');
 
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.canvasParentElement.offsetHeight;
@@ -285,6 +286,7 @@ Game.prototype.checkIfLivesCollidedPlayer = function () {
       self.live ++;
       self.player.drawCollision();
       self.lives.splice(index, 1);
+      self.roar.play();
     }
   });
 };

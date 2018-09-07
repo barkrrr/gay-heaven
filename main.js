@@ -105,6 +105,9 @@ function main() {
         <p>Of course you can take a pause for an extra sip of Mountain Dew...</p>
         <p>Yayaya :) </p>
         <button id="return-button">Return to Start</button>
+        <div>
+        <img src="./images/gay-heaven-player.png">
+        </div>
       </main>
     `);
 
