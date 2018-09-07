@@ -3,7 +3,7 @@
 function Friend(canvas, side) {
   var self = this;
   
-  self.friendsChoices = ['./images/kitty-downsized.png', './images/ice-cream-downsized.png'];
+  self.friendsChoices = ['./images/kitty-downsized.png', './images/ice-cream.png'];
   self.image = new Image();
   self.image.src = self.getRandomImage();
   self.canvas = canvas;

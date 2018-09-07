@@ -47,9 +47,9 @@ function main() {
         <h1>Gay Heaven</h1>
       </div>
         <div>
-        <img src="./images/kitty-downsized.png">
+          <img src="./images/kitty-downsized.png">
         </div>
-        <div>
+        <div class="user-input">
           <label>Username:</label>
           <input type="text" placeholder="What's your favorite ice cream?"></input>
         </div>
@@ -105,9 +105,6 @@ function main() {
         <p>Of course you can take a pause for an extra sip of Mountain Dew...</p>
         <p>Yayaya :) </p>
         <button id="return-button">Return to Start</button>
-        <div>
-        <img src="./images/gay-heaven-player.png">
-        </div>
       </main>
     `);
 
@@ -161,13 +158,14 @@ function main() {
 
     gameOverMain = buildDom(`
       <main class="gameover">
-      <div>
-        <h1></h1>
-      </div>
-      <div>
-        <p><span></span></p>
-        <button>Restart</button>
-      </div>
+        <div class="content">
+          <h1></h1>
+          <p><span></span></p>
+          <button>Restart</button>
+        </div>
+        <footer>
+          <p>Listen to Clint\'s new record "\Centuries\" on <a href="https://kiamrecords.bandcamp.com/album/centuries"</a> Kiam records <span>♥</span></p>
+        </foooter>
       </main>
     `);
 
