@@ -46,7 +46,7 @@ Game.prototype.start = function () {
   self.scoreElement = self.gameMain.querySelector('.score .value');
   
   document.body.appendChild(self.gameMain);
-  var audio = document.querySelector('iframe');
+  var audio = document.querySelector('audio');
 
   audio.remove();
 

@@ -158,6 +158,7 @@ function main() {
 
     gameOverMain = buildDom(`
       <main class="gameover">
+      <audio src="./music/LCDSoundsystem-New-York.mp3" autoplay controls></audio>
         <div class="content">
           <h1></h1>
           <p><span></span></p>
@@ -188,7 +189,7 @@ function main() {
       <iframe src="./music/LCDSoundsystem-New-York.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
     `)
 
-    document.body.appendChild(iframe);
+    // document.body.appendChild(iframe);
   }
 
   function destroyGameOver() {
