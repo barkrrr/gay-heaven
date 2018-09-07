@@ -43,9 +43,10 @@ function main() {
 
     splashMain = buildDom(`
       <main class="splash">
-      <div>
-        <h1>Gay Heaven</h1>
-      </div>
+        <audio src="./music/LCDSoundsystem-New-York.mp3" autoplay controls></audio>
+        <div>
+          <h1>Gay Heaven</h1>
+        </div>
         <div>
           <img src="./images/kitty-downsized.png">
         </div>
@@ -66,19 +67,13 @@ function main() {
     input = document.querySelector('input');
     input.setAttribute('size',input.getAttribute('placeholder').length);
 
-
     var startButton = splashMain.querySelector('#start-button');
-
-    
     startButton.addEventListener('click', handleClickInputUsername); 
 
     document.addEventListener('keyup', handleEnterKeyUp); 
 
     var instructionsButton = splashMain.querySelector('#instructions-button');
     instructionsButton.addEventListener('click', startInstructions);
-
-    // self.music = self.splashMain.querySelector('audio');
-    // self.music.autoplay = true;
   }
 
   function destroySplash() {
@@ -100,7 +95,7 @@ function main() {
         <h1>How to... </h1>
       </div>
       </div>
-        <p>Help Clint escape from this Trumpish nightmare ^-^ ...by avoiding his enemies, and collide with his favorite objects.</p>
+        <p>Help Clint escape from this Trumpish nightmare ^-^ ...by avoiding his enemies, and collide with 5 of his favorite objects.</p>
         <p>Catch extra lives to extend the game! You start with 3 lives, but the fun is over after 30 secs, lol!</p>
         <p>Of course you can take a pause for an extra sip of Mountain Dew...</p>
         <p>Yayaya :) </p>
@@ -158,7 +153,7 @@ function main() {
 
     gameOverMain = buildDom(`
       <main class="gameover">
-      <audio src="./music/LCDSoundsystem-New-York.mp3" autoplay controls></audio>
+        <audio src="./music/LCDSoundsystem-New-York.mp3" autoplay controls></audio>
         <div class="content">
           <h1></h1>
           <p><span></span></p>

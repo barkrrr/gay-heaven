@@ -21,12 +21,16 @@ function Player(canvas, lives) {
   self.ctx = self.canvasElement.getContext('2d');
   self.frameCount = 0;
   self.intervalId = 0;
+  self.isExploding = false;
+  self.explodingCounter = null;
 };
 
 Player.prototype.collided = function () {
   var self= this;
 
   self.lives--;
+  self.isExploding = true;
+  self.explodingCounter = 100;
 };
 
 Player.prototype.collidedLive = function () {
@@ -87,6 +91,14 @@ Player.prototype.update = function () {
   if (self.y > maxY) {
     self.y = maxY;
   }
+
+  if (self.isExploding) {
+    self.explodingCounter--;
+    if (!self.explodingCounter) {
+      self.isExploding = false;
+    }
+  }
+
 };
 
 Player.prototype.draw = function () {
@@ -94,6 +106,12 @@ Player.prototype.draw = function () {
 
   var xPosition = self.x - self.width / 2;
   var yPosition = self.y - self.height / 2;
+
+  if (self.isExploding) {
+    xPosition += Math.random() * 10 - 5;
+    yPosition += Math.random() * 10 - 5;
+  }
+
   self.ctx.drawImage(self.image, 0, 0, 80, 120, xPosition, yPosition - 20, self.width, self.height+40);
 };
 
