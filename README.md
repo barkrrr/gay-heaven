@@ -26,7 +26,7 @@ Html 5 and Vanilla Javascript
     - Transition: if you win or lose you go to the Game over screen
   
 - Game Over Screen
-    - with dom manipulation i wil dynamicaly change the innerText of the message
+    - with dom manipulation I will dynamicaly change the innerText of the message
     - Play again button (transiton to game screen)
     - Go to start screen button (transition to the splash screen)
   
@@ -48,9 +48,9 @@ Html 5 and Vanilla Javascript
 -	Images (and GIFs?) that replace basic CANVAS objects (player and "friends" and "enemies").
 -	Welcome screen background.
 -	Add "special items" that provide player with extra time.
--	Sound (The Weather Girls, really?).
--	A hellish background (NYC wall of faces).
--	Transition to gay heaven when game ends (and “hot dog face” GIF).
+-	Sound.
+-	A hellish background.
+-	Transition to gay heaven when game ends.
 
 ## Data Structure
 
