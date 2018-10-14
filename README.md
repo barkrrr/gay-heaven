@@ -11,8 +11,6 @@ If the player doesn’t collect 10 points in 30 seconds, the game is over, and a
 
 ## MVP 
 
-Technique
-
 Html 5 and Vanilla Javascript
 
 ## Game states
